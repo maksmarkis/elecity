@@ -1,0 +1,34 @@
+{
+  "city": {
+    "name": "Москва"
+  },
+  "navLinks": [
+    { "id": 1, "title": "Отзывы", "href": "/reviews" },
+    { "id": 2, "title": "О нас", "href": "/about" },
+    { "id": 3, "title": "Доставка", "href": "/delivery" },
+    { "id": 4, "title": "Оплата", "href": "/payment" },
+    { "id": 5, "title": "Подключение техники", "href": "/connection" },
+    { "id": 6, "title": "Дополнительный сервис", "href": "/service" },
+    { "id": 7, "title": "Наши гарантии", "href": "/guarantees" },
+    { "id": 8, "title": "Почему мы?", "href": "/why-us" },
+    { "id": 9, "title": "Контакты", "href": "/contacts" }
+  ],
+  "user": {
+    "label": "Личный кабинет",
+    "href": "/profile"
+  },
+  "contacts": {
+    "phone": "+7(495)150-95-55",
+    "workTime": "9:00 - 22:00 без выходных",
+    "whatsapp": "https://wa.me/74951509555",
+    "telegram": "https://t.me/elecity"
+  },
+  "categories": [
+    { "id": 1, "name": "Бытовая техника" },
+    { "id": 2, "name": "Видео и аудио" },
+    { "id": 3, "name": "Климат" },
+    { "id": 4, "name": "Компьютерная техника" },
+    { "id": 5, "name": "Дом и дача" },
+    { "id": 6, "name": "Спорт и отдых" }
+  ]
+}
