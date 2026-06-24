@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <!-- 768px -->
+    <!-- ПЛАНШЕТ 768px -->
     <div class="tablet-header">
       <div class="tablet-content">
         <div class="left-part">
@@ -41,18 +41,28 @@
           <a href="#">О нас</a>
           <a href="#">Доставка</a>
           <a href="#">Оплата</a>
-          <a href="#">Еще</a>
+          <div class="more-wrapper" @mouseenter="showMore = true" @mouseleave="showMore = false">
+            <span class="more-btn">Еще</span>
+            <div v-if="showMore" class="dropdown">
+              <a href="#">Подключение техники</a>
+              <a href="#">Доп. сервис</a>
+              <a href="#">Наши гарантии</a>
+              <a href="#">Почему мы?</a>
+              <a href="#">Контакты</a>
+              <a href="#">Оставить обращение</a>
+            </div>
+          </div>
         </nav>
 
         <div class="tablet-right">
           <img src="/viber.png" alt="viber" class="social-icon" />
-          <img src="/tg.png" alt="tg" class="social-icon" />
+          <img src="/tg.png" alt="tg" class="social-icon tg-icon" />
           <a href="tel:+74951509555" class="phone">+7(495)150-95-55</a>
         </div>
       </div>
     </div>
 
-    <!-- МОБИЛЬНЫЙ ХЕДЕР 375px -->
+    <!-- МОБИЛЬНЫЙ 375px -->
     <div class="mobile-header">
       <div class="mobile-content">
         <img src="/logo.png" alt="ELECITY" class="mobile-logo" />
@@ -60,8 +70,9 @@
         <div class="mobile-actions">
           <img src="/src/components/icons/search.png" alt="search" class="mobile-icon" />
           <img src="/shopping-logo.png" alt="cart" class="mobile-icon" />
+          <img src="./icons/login-heder.png" alt="login" class="mobile-icon personal-red" />
           <button class="menu-btn" @click="openMenu">
-            <img src="/menu-logo.png" alt="menu" />
+            <img src="/menu-logo.png" alt="menu" class="menu-icon-red" />
           </button>
         </div>
       </div>
@@ -74,14 +85,12 @@
           <button class="close-btn" @click="closeMenu">✕</button>
         </div>
 
-        <!-- Город -->
         <div class="menu-item" @click="selectCity">
           <img src="/geoposit-heder.png" alt="" class="menu-icon" />
           <span>Москва</span>
           <span class="arrow">→</span>
         </div>
 
-        <!-- Все категории -->
         <div class="menu-item" @click="openCategories">
           <span class="hamburger">≡</span>
           <span>Все категории</span>
@@ -98,7 +107,6 @@
         <a href="#" class="menu-item">Почему мы?</a>
         <a href="#" class="menu-item">Контакты</a>
 
-        <!-- Контакты -->
         <div class="menu-contacts">
           <a href="tel:+74951509555" class="phone">+7(495)150-95-55</a>
           <span class="time">9:00 - 22:00 без выходных</span>
@@ -133,6 +141,7 @@
 <script setup>
 import { ref } from 'vue'
 
+const showMore = ref(false)
 const isMenuOpen = ref(false)
 const isCategoriesOpen = ref(false)
 
@@ -188,17 +197,81 @@ const selectCity = () => alert('Выбор города')
   align-items: center;
   justify-content: space-between;
 }
-.tablet-menu a { margin-right: 20px; color: #1a2634; text-decoration: none; }
-.tablet-right { display: flex; align-items: center; gap: 12px; }
+.tablet-menu { display: flex; align-items: center; gap: 20px; }
+.tablet-menu > a { color: #1a2634; text-decoration: none; font-size: 14px; }
+.more-wrapper { position: relative; cursor: pointer; }
+.more-btn { font-size: 14px; color: #1a2634; }
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  padding: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+.dropdown a {
+  display: block;
+  padding: 8px 16px;
+  color: #1a2634;
+  text-decoration: none;
+  font-size: 14px;
+}
+.dropdown a:hover { background: #f5f7fa; }
+.tablet-right { display: flex; align-items: center; gap: 11px; margin-left: 105px; }
 .social-icon { width: 26px; height: 26px; }
+.tg-icon { margin-left: 3px; }
+.phone { font-size: 14px; font-weight: 600; color: #1a2634; text-decoration: none; margin-left: 14px; white-space: nowrap; }
 
 /* Mobile 375 */
-.mobile-header { display: none; padding: 12px 16px; }
-.mobile-content { display: flex; justify-content: space-between; align-items: center; }
-.mobile-logo { height: 48px; width: auto; }
-.mobile-actions { display: flex; gap: 18px; align-items: center; }
-.mobile-icon { width: 24px; height: 24px; cursor: pointer; }
-.menu-btn { background: none; border: none; padding: 0; cursor: pointer; }
+.mobile-header { display: none; }
+.mobile-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 12px;
+  background: white;
+  border-bottom: 1px solid #e8edf3;
+}
+.mobile-logo {
+  width: 105px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-left: 75px;
+}
+.mobile-icon {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  object-fit: contain;
+  margin-left: 18px;
+}
+.mobile-icon:first-child {
+  margin-left: 0;
+}
+.personal-red {
+  filter: invert(18%) sepia(89%) saturate(7460%) hue-rotate(357deg) brightness(95%) contrast(92%);
+}
+.menu-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-left: 42px;
+}
+.menu-icon-red {
+  width: 22px;
+  height: 22px;
+  filter: invert(18%) sepia(89%) saturate(7460%) hue-rotate(357deg) brightness(95%) contrast(92%);
+}
 
 /* Мобильные меню */
 .mobile-menu-overlay, .categories-overlay {
@@ -208,14 +281,14 @@ const selectCity = () => alert('Выбор города')
   background: rgba(0,0,0,0.5);
   z-index: 1100;
   display: none;
-  align-items: flex-start;
-  justify-content: flex-end;
 }
-.mobile-menu-overlay.active, .categories-overlay.active { display: flex; }
-
+.mobile-menu-overlay.active, .categories-overlay.active {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 .mobile-menu, .categories-menu {
-  width: 85%;
-  max-width: 360px;
+  width: 100%;
   height: 100vh;
   background: white;
   overflow-y: auto;
@@ -225,17 +298,18 @@ const selectCity = () => alert('Выбор города')
   padding: 16px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   border-bottom: 1px solid #eee;
 }
-
 .close-btn {
-  font-size: 28px;
+  font-size: 32px;
   background: none;
   border: none;
   color: #e53935;
   cursor: pointer;
+  padding: 0 8px;
+  line-height: 1;
 }
-
 .back-btn {
   background: none;
   border: none;
@@ -248,20 +322,56 @@ const selectCity = () => alert('Выбор города')
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   font-size: 16px;
   color: #1a2634;
   cursor: pointer;
+  text-decoration: none;
+}
+.menu-item span {
+  text-align: left;
+}
+.menu-item .arrow {
+  margin-left: auto;
+  font-size: 20px;
+  color: #999;
+}
+.menu-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.hamburger {
+  font-size: 22px;
+  flex-shrink: 0;
 }
 
 .menu-contacts {
-  padding: 24px 20px;
+  padding: 20px;
   border-top: 1px solid #eee;
 }
-
-.phone { font-size: 18px; font-weight: 700; color: #1a2634; text-decoration: none; }
-.time { font-size: 14px; color: #666; }
-.social img { width: 34px; margin-right: 12px; }
+.menu-contacts .phone {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a2634;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+}
+.time {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-bottom: 12px;
+}
+.menu-contacts .social {
+  display: flex;
+  gap: 12px;
+}
+.menu-contacts .social img {
+  width: 34px;
+}
 
 /* Адаптив */
 @media (max-width: 1024px) {

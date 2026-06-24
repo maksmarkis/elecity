@@ -3,118 +3,30 @@
     <h2 class="catalog-title">Каталог</h2>
     <div class="catalog-line"></div>
 
-    <!-- Ряд 1 -->
-    <div class="catalog-grid">
-      <!-- Блок 1 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Крупная бытовая техника</h3>
+    <div v-for="(row, rowIndex) in catalogRows" :key="rowIndex" class="catalog-grid">
+      <div v-for="(block, blockIndex) in row" :key="blockIndex" class="catalog-block">
+        <h3 class="catalog-block-title">{{ block.title }}</h3>
         <ul class="catalog-list">
-          <li><a href="#">Холодильники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-        </ul>
-        <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
-      </div>
-
-      <!-- Блок 2 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Товары для дома</h3>
-        <ul class="catalog-list">
-          <li><a href="#">Холодильники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-        </ul>
-        <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
-      </div>
-
-      <!-- Блок 3 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Мелкая бытовая техника</h3>
-        <ul class="catalog-list">
-          <li><a href="#">Крепления и кронштейны для мелкой кухонной техники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-        </ul>
-        <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
-      </div>
-
-      <!-- Блок 4 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Крупная бытовая техника</h3>
-        <ul class="catalog-list">
-          <li><a href="#">Холодильники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-        </ul>
-        <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
-      </div>
-    </div>
-
-    <!-- Ряд 2 -->
-    <div class="catalog-grid">
-      <!-- Блок 5 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Товары для дома</h3>
-        <ul class="catalog-list">
-          <li><a href="#">Холодильники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-        </ul>
-        <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
-      </div>
-
-      <!-- Блок 6 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Крупная бытовая техника</h3>
-        <ul class="catalog-list">
-          <li><a href="#">Холодильники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-        </ul>
-        <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
-      </div>
-
-      <!-- Блок 7 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Товары для дома</h3>
-        <ul class="catalog-list">
-          <li><a href="#">Холодильники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
-        </ul>
-        <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
-      </div>
-
-      <!-- Блок 8 -->
-      <div class="catalog-block">
-        <h3 class="catalog-block-title">Мелкая бытовая техника</h3>
-        <ul class="catalog-list">
-          <li><a href="#">Крепления и кронштейны для мелкой кухонной техники <span class="count">(135)</span></a></li>
-          <li><a href="#">Морозильные камеры <span class="count">(74)</span></a></li>
-          <li><a href="#">Стиральные машины <span class="count">(213)</span></a></li>
-          <li><a href="#">Посудомоечные машины <span class="count">(98)</span></a></li>
+          <li v-for="(item, itemIndex) in block.items" :key="itemIndex">
+            <a href="#">{{ item.name }} <span class="count">({{ item.count }})</span></a>
+          </li>
         </ul>
         <a href="#" class="all-link">Все товары <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const catalogRows = ref([])
+
+onMounted(async () => {
+  const res = await fetch('/data/catalog.json')
+  catalogRows.value = await res.json()
+})
+</script>
 
 <style scoped>
 .catalog {
@@ -171,7 +83,6 @@
   text-decoration: none;
   font-size: 14px;
   transition: color 0.2s;
-  display: inline;
 }
 
 .catalog-list li a:hover {
@@ -200,5 +111,82 @@
 
 .arrow {
   font-size: 14px;
+}
+/* Tablet 768 */
+@media (max-width: 768px) {
+  .catalog {
+    margin: 60px auto 0;
+    padding: 0 16px;
+  }
+
+  .catalog-title {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+  }
+
+  .catalog-line {
+    margin-bottom: 20px;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+
+  .catalog-block {
+    flex: none;
+  }
+
+  .catalog-block-title {
+    font-size: 15px;
+    margin: 0 0 10px 0;
+  }
+
+  .catalog-list li {
+    margin-bottom: 6px;
+  }
+
+  .catalog-list li a {
+    font-size: 13px;
+  }
+
+  .count {
+    font-size: 12px;
+  }
+
+  .all-link {
+    font-size: 13px;
+  }
+}
+
+/* Mobile 375 */
+@media (max-width: 480px) {
+  .catalog {
+    margin: 40px auto 0;
+    padding: 0 10px;
+  }
+
+  .catalog-title {
+    font-size: 20px;
+  }
+
+  .catalog-grid {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .catalog-block-title {
+    font-size: 14px;
+  }
+
+  .catalog-list li a {
+    font-size: 12px;
+  }
+
+  .all-link {
+    font-size: 12px;
+  }
 }
 </style>

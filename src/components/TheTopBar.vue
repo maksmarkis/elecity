@@ -33,6 +33,9 @@
         </div>
       </div>
 
+      <!-- Иконка личного кабинета (планшет) -->
+      <img src="./icons/login-heder.png" alt="login" class="personal-icon" />
+
       <!-- КОРЗИНА -->
       <div class="cart">
         <div class="cart-wrapper">
@@ -142,7 +145,7 @@
 .phone-block {
   display: flex;
   flex-direction: column;
-  margin-left: 80px;
+  margin-left: 55px;
 }
 
 .phone {
@@ -194,6 +197,15 @@
   font-size: 15px;
 }
 
+/* Иконка личного кабинета */
+.personal-icon {
+  display: none;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
 /* Адаптив */
 @media (max-width: 1300px) {
   .topbar-inner { gap: 16px; }
@@ -202,5 +214,74 @@
 
 @media (max-width: 1100px) {
   .top-categories { gap: 20px; font-size: 15px; }
+}
+
+/* Tablet 768 */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 12px 0;
+    border-bottom: 1px solid #e8edf3;
+  }
+
+  .topbar-inner {
+    padding: 0 10px;
+    gap: 0;
+    height: 86px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .top-categories {
+    display: none;
+  }
+
+  .contacts {
+    display: none;
+  }
+
+  .cart-wrapper {
+    display: flex;
+  }
+
+  .cart-info {
+    display: none;
+  }
+
+  .logo {
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: 200px;
+    height: auto;
+  }
+
+  .search {
+    flex: 0 0 363px;
+    max-width: 353px;
+    margin-left: 42px;
+  }
+
+  .search input {
+    width: 100%;
+    height: 42px;
+  }
+
+  .personal-icon {
+    display: block;
+    margin-left: auto;
+    width: 28px;
+    height: 28px;
+  }
+
+  .cart {
+    margin-left: 22px;
+    margin-right: 10px;
+  }
+
+  .cart-icon {
+    width: 28px;
+    height: 28px;
+  }
 }
 </style>

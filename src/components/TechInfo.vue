@@ -24,31 +24,26 @@
       </p>
     </div>
 
-    <!-- Блок с преимуществами -->
     <div class="advantages">
-      <div class="advantage-item">
-        <img src="/try-time.png" alt="Опыт" class="advantage-icon" />
-        <span class="advantage-label">8 лет опыт</span>
-      </div>
-      <div class="advantage-item">
-        <img src="/try-obmen.png" alt="Возврат" class="advantage-icon" />
-        <span class="advantage-label">Возврат и обмен</span>
-      </div>
-      <div class="advantage-item">
-        <img src="/rty-otvertka.png" alt="Установка" class="advantage-icon" />
-        <span class="advantage-label">Установка</span>
-      </div>
-      <div class="advantage-item">
-        <img src="/try-palec.png" alt="Качество" class="advantage-icon" />
-        <span class="advantage-label">Высокое качество</span>
-      </div>
-      <div class="advantage-item">
-        <img src="/try-medal.png" alt="Гарантия" class="advantage-icon" />
-        <span class="advantage-label">Гарантия на все</span>
+      <div v-for="(item, i) in advantages" :key="i" class="advantage-item">
+        <img :src="item.img" alt="" class="advantage-icon" />
+        <span class="advantage-label">{{ item.label }}</span>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const advantages = ref([])
+
+onMounted(async () => {
+  const res = await fetch('./data/techinfo.json')
+  const data = await res.json()
+  advantages.value = data.advantages
+})
+</script>
 
 <style scoped>
 .tech-info {
@@ -118,5 +113,40 @@
   font-weight: 500;
   text-align: center;
   white-space: nowrap;
+}
+/* Tablet 768 */
+@media (max-width: 768px) {
+  .advantages {
+    gap: 30px;
+    padding: 20px 16px;
+  }
+
+  .advantage-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .advantage-label {
+    font-size: 12px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* Mobile 375 */
+@media (max-width: 480px) {
+  .advantages {
+    gap: 16px;
+    padding: 16px 10px;
+  }
+
+  .advantage-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .advantage-label {
+    font-size: 11px;
+  }
 }
 </style>

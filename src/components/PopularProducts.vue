@@ -3,312 +3,115 @@
     <h2 class="popular-title">Популярное</h2>
     <div class="popular-line"></div>
 
-    <!-- Ряд 1 -->
+    <!-- Ряд 1 (первые 4 товара) -->
     <div class="products-grid">
-      <div class="product-card">
-        <div class="product-badge new">Новинка</div>
-        <div class="product-badge gift">Подарок</div>
+      <div v-for="(item, i) in row1" :key="i" class="product-card">
+        <div v-if="item.badge === 'new'" class="product-badge new">Новинка</div>
+        <div v-if="item.gift" class="product-badge gift" :class="{ offset: item.badge === 'new' }">Подарок</div>
+        <div v-if="item.badge === 'gift'" class="product-badge gift">Подарок</div>
         <div class="product-img">
-          <img src="/vodo-nagrev.png" alt="Водонагреватель" />
+          <img :src="item.img" :alt="item.name" />
         </div>
-        <div class="product-discount">-20%</div>
-        <div class="product-price">14 990 ₽</div>
-        <div class="product-name">Водонагреватель Electrolux EWH 80 Formax</div>
+        <div class="product-discount">{{ item.discount }}</div>
+        <div class="product-price">{{ item.price }}</div>
+        <div class="product-name">{{ item.name }}</div>
         <div class="product-rating">
           <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
+            <span v-for="s in 5" :key="s" class="star" :class="{ filled: s <= item.stars }">★</span>
           </span>
           <span class="reviews">
             <span class="reviews-icon">💬</span>
-            <span class="reviews-count">12 отзывов</span>
+            <span class="reviews-count">{{ item.reviews }} {{ pluralReviews(item.reviews) }}</span>
           </span>
         </div>
-        <button class="buy-btn">Купить</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge new">Новинка</div>
-        <div class="product-img">
-          <img src="/stiral.png" alt="Стиральная машина" />
-        </div>
-        <div class="product-discount">-20%</div>
-        <div class="product-price">32 490 ₽</div>
-        <div class="product-name">Стиральная машина LG F-1096TD3</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">8 отзывов</span>
-          </span>
-        </div>
-        <button class="buy-btn out-of-stock" disabled>Нет в наличии</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge gift">Подарок</div>
-        <div class="product-img">
-          <img src="/microvave.png" alt="Микроволновая печь" />
-        </div>
-        <div class="product-discount">-20%</div>
-        <div class="product-price">18 990 ₽</div>
-        <div class="product-name">Микроволновая печь WHIRLPOOL AMW 730 IX</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">24 отзыва</span>
-          </span>
-        </div>
-        <button class="buy-btn">Купить</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge new">Новинка</div>
-        <div class="product-img">
-          <img src="/telek.png" alt="Телевизор" />
-        </div>
-        <div class="product-discount">-20%</div>
-        <div class="product-price">22 990 ₽</div>
-        <div class="product-name">Телевизор BLACKTON 2402B</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">3 отзыва</span>
-          </span>
-        </div>
-        <button class="buy-btn">Купить</button>
+        <button v-if="item.inStock" class="buy-btn">Купить</button>
+        <button v-else class="buy-btn out-of-stock" disabled>Нет в наличии</button>
       </div>
     </div>
 
-    <!-- Серая линия после ряда 1 -->
     <div class="row-divider"></div>
 
-    <!-- Ряд 2 -->
+    <!-- Ряд 2 (вторые 4 товара) -->
     <div class="products-grid">
-      <div class="product-card">
-        <div class="product-badge new">Новинка</div>
-        <div class="product-badge gift">Подарок</div>
+      <div v-for="(item, i) in row2" :key="i" class="product-card">
+        <div v-if="item.badge === 'new'" class="product-badge new">Новинка</div>
+        <div v-if="item.gift" class="product-badge gift" :class="{ offset: item.badge === 'new' }">Подарок</div>
+        <div v-if="item.badge === 'gift'" class="product-badge gift">Подарок</div>
         <div class="product-img">
-          <img src="/stiral.png" alt="Холодильник" />
+          <img :src="item.img" :alt="item.name" />
         </div>
-        <div class="product-discount">-15%</div>
-        <div class="product-price">45 990 ₽</div>
-        <div class="product-name">Холодильник Samsung RB30T3000SA</div>
+        <div class="product-discount">{{ item.discount }}</div>
+        <div class="product-price">{{ item.price }}</div>
+        <div class="product-name">{{ item.name }}</div>
         <div class="product-rating">
           <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
+            <span v-for="s in 5" :key="s" class="star" :class="{ filled: s <= item.stars }">★</span>
           </span>
           <span class="reviews">
             <span class="reviews-icon">💬</span>
-            <span class="reviews-count">18 отзывов</span>
+            <span class="reviews-count">{{ item.reviews }} {{ pluralReviews(item.reviews) }}</span>
           </span>
         </div>
-        <button class="buy-btn">Купить</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img">
-          <img src="/stiral.png" alt="Пылесос" />
-        </div>
-        <div class="product-discount">-25%</div>
-        <div class="product-price">8 990 ₽</div>
-        <div class="product-name">Пылесос Dyson V8 Absolute</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">6 отзывов</span>
-          </span>
-        </div>
-        <button class="buy-btn out-of-stock" disabled>Нет в наличии</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge new">Новинка</div>
-        <div class="product-img">
-          <img src="/stiral.png" alt="Плита" />
-        </div>
-        <div class="product-discount">-20%</div>
-        <div class="product-price">27 990 ₽</div>
-        <div class="product-name">Электрическая плита Gorenje EC 6341 XC</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">31 отзыв</span>
-          </span>
-        </div>
-        <button class="buy-btn">Купить</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge gift">Подарок</div>
-        <div class="product-img">
-          <img src="/stiral.png" alt="Утюг" />
-        </div>
-        <div class="product-discount">-30%</div>
-        <div class="product-price">5 990 ₽</div>
-        <div class="product-name">Утюг Philips GC4909/80 Azur</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">2 отзыва</span>
-          </span>
-        </div>
-        <button class="buy-btn">Купить</button>
+        <button v-if="item.inStock" class="buy-btn">Купить</button>
+        <button v-else class="buy-btn out-of-stock" disabled>Нет в наличии</button>
       </div>
     </div>
 
-    <!-- Баннер с аэрподсами -->
+    <!-- Баннер -->
     <div class="banner">
       <img src="/airpods-banner.png" alt="AirPods" class="banner-img" />
     </div>
 
-    <!-- Ряд 3 -->
+    <!-- Ряд 3 (последние 4 товара) -->
     <div class="products-grid">
-      <div class="product-card">
-        <div class="product-badge new">Новинка</div>
+      <div v-for="(item, i) in row3" :key="i" class="product-card">
+        <div v-if="item.badge === 'new'" class="product-badge new">Новинка</div>
+        <div v-if="item.gift" class="product-badge gift" :class="{ offset: item.badge === 'new' }">Подарок</div>
+        <div v-if="item.badge === 'gift'" class="product-badge gift">Подарок</div>
         <div class="product-img">
-          <img src="/stiral.png" alt="Товар" />
+          <img :src="item.img" :alt="item.name" />
         </div>
-        <div class="product-discount">-20%</div>
-        <div class="product-price">12 990 ₽</div>
-        <div class="product-name">Название товара</div>
+        <div class="product-discount">{{ item.discount }}</div>
+        <div class="product-price">{{ item.price }}</div>
+        <div class="product-name">{{ item.name }}</div>
         <div class="product-rating">
           <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
+            <span v-for="s in 5" :key="s" class="star" :class="{ filled: s <= item.stars }">★</span>
           </span>
           <span class="reviews">
             <span class="reviews-icon">💬</span>
-            <span class="reviews-count">5 отзывов</span>
+            <span class="reviews-count">{{ item.reviews }} {{ pluralReviews(item.reviews) }}</span>
           </span>
         </div>
-        <button class="buy-btn">Купить</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-img">
-          <img src="/stiral.png" alt="Товар" />
-        </div>
-        <div class="product-discount">-15%</div>
-        <div class="product-price">9 990 ₽</div>
-        <div class="product-name">Название товара</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">10 отзывов</span>
-          </span>
-        </div>
-        <button class="buy-btn">Купить</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge gift">Подарок</div>
-        <div class="product-img">
-          <img src="/stiral.png" alt="Товар" />
-        </div>
-        <div class="product-discount">-25%</div>
-        <div class="product-price">15 990 ₽</div>
-        <div class="product-name">Название товара</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">20 отзывов</span>
-          </span>
-        </div>
-        <button class="buy-btn out-of-stock" disabled>Нет в наличии</button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-badge new">Новинка</div>
-        <div class="product-img">
-          <img src="/stiral.png" alt="Товар" />
-        </div>
-        <div class="product-discount">-30%</div>
-        <div class="product-price">7 990 ₽</div>
-        <div class="product-name">Название товара</div>
-        <div class="product-rating">
-          <span class="stars">
-            <span class="star filled">★</span>
-            <span class="star filled">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-          </span>
-          <span class="reviews">
-            <span class="reviews-icon">💬</span>
-            <span class="reviews-count">1 отзыв</span>
-          </span>
-        </div>
-        <button class="buy-btn">Купить</button>
+        <button v-if="item.inStock" class="buy-btn">Купить</button>
+        <button v-else class="buy-btn out-of-stock" disabled>Нет в наличии</button>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+
+const products = ref([])
+
+onMounted(async () => {
+  const res = await fetch('/data/popular.json')
+  products.value = await res.json()
+})
+
+const row1 = computed(() => products.value.slice(0, 4))
+const row2 = computed(() => products.value.slice(4, 8))
+const row3 = computed(() => products.value.slice(8, 12))
+
+function pluralReviews(n) {
+  const mod10 = n % 10
+  const mod100 = n % 100
+  if (mod10 === 1 && mod100 !== 11) return 'отзыв'
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'отзыва'
+  return 'отзывов'
+}
+</script>
 
 <style scoped>
 .popular {
@@ -373,7 +176,7 @@
   z-index: 2;
 }
 
-.product-badge.new + .product-badge.gift {
+.product-badge.gift.offset {
   top: 32px;
 }
 
@@ -494,7 +297,6 @@
   margin: 35px 0;
 }
 
-/* Баннер */
 .banner {
   width: 100%;
   height: 355px;
@@ -507,5 +309,140 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* Tablet 768 */
+@media (max-width: 768px) {
+  .popular {
+    margin: 50px auto 0;
+    padding: 0 16px;
+  }
+
+  .popular-title {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+  }
+
+  .popular-line {
+    margin-bottom: 20px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-left: 0;
+  }
+
+  .product-card {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .product-img {
+    height: 180px;
+  }
+
+  .product-discount {
+    top: 150px;
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .product-name {
+    font-size: 13px;
+  }
+
+  .product-badge.new,
+  .product-badge.gift {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .product-badge.gift.offset {
+    top: 26px;
+  }
+
+  .buy-btn {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+
+  .banner {
+    height: 200px;
+    border-radius: 12px;
+    margin: 0 0 25px 0;
+  }
+
+  .row-divider {
+    margin: 25px 0;
+  }
+
+  .reviews-count {
+    font-size: 11px;
+  }
+
+  .star {
+    font-size: 14px;
+  }
+}
+
+/* Mobile 375 */
+@media (max-width: 480px) {
+  .popular {
+    margin: 40px auto 0;
+    padding: 0 10px;
+  }
+
+  .popular-title {
+    font-size: 20px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .product-img {
+    height: 150px;
+  }
+
+  .product-discount {
+    top: 120px;
+    font-size: 10px;
+  }
+
+  .product-price {
+    font-size: 16px;
+  }
+
+  .product-name {
+    font-size: 12px;
+  }
+
+  .product-rating {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .buy-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .banner {
+    height: 140px;
+    border-radius: 8px;
+  }
+
+  .row-divider {
+    margin: 20px 0;
+  }
 }
 </style>

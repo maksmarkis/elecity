@@ -1,45 +1,48 @@
 <template>
   <div class="hero">
     <div class="hero-slider" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-      <div v-for="i in 4" :key="i" class="slide">
-        <!-- СЮДА ВСТАВИЛ ТВОЮ КАРТИНКУ -->
-        <img src="/mashonka.png" alt="Стиральная машина" class="slide-img" />
-
+      <div v-for="(slide, i) in slides" :key="i" class="slide">
+        <img :src="slide.img" alt="" class="slide-img" />
         <div class="hero-content">
-          <h1>Большой выбор<br>стиральных машин</h1>
-          <p>Успей купить по суперцене</p>
-          <button class="hero-btn">Подробнее</button>
+          <h1 v-html="slide.title"></h1>
+          <p>{{ slide.subtitle }}</p>
+          <button class="hero-btn">{{ slide.btn }}</button>
         </div>
       </div>
     </div>
 
-    <!-- Стрелки -->
     <button class="slider-arrow left" @click="prevSlide">←</button>
     <button class="slider-arrow right" @click="nextSlide">→</button>
 
-    <!-- Точки -->
     <div class="dots">
       <span
-          v-for="(slide, i) in 4"
+          v-for="(slide, i) in slides"
           :key="i"
           class="dot"
           :class="{ active: currentSlide === i }"
-          @click="goToSlide(i)">
-      </span>
+          @click="goToSlide(i)"
+      ></span>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
+const slides = ref([])
 const currentSlide = ref(0)
 
+onMounted(async () => {
+  const res = await fetch('/data/hero.json')
+  const data = await res.json()
+  slides.value = data.slides
+})
+
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % 4
+  currentSlide.value = (currentSlide.value + 1) % slides.value.length
 }
 const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + 4) % 4
+  currentSlide.value = (currentSlide.value - 1 + slides.value.length) % slides.value.length
 }
 const goToSlide = (index) => {
   currentSlide.value = index
@@ -88,11 +91,13 @@ const goToSlide = (index) => {
   font-size: 38px;
   line-height: 1.1;
   margin-bottom: 12px;
+  font-weight: 700;
 }
 
 .hero-content p {
   font-size: 18px;
   margin-bottom: 28px;
+  font-weight: 400;
 }
 
 .hero-btn {
@@ -102,16 +107,15 @@ const goToSlide = (index) => {
   padding: 12px 32px;
   border-radius: 30px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
-/* Стрелки */
 .slider-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
   border: none;
   width: 48px;
   height: 48px;
@@ -123,10 +127,9 @@ const goToSlide = (index) => {
   backdrop-filter: blur(4px);
 }
 
-.left { left: 10px; }    /* ← прижато к левому краю */
-.right { right: 10px; }  /* ← прижато к правому краю */
+.left { left: 10px; }
+.right { right: 10px; }
 
-/* Точки */
 .dots {
   position: absolute;
   bottom: 30px;
@@ -140,7 +143,7 @@ const goToSlide = (index) => {
 .dot {
   width: 10px;
   height: 10px;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
@@ -149,5 +152,77 @@ const goToSlide = (index) => {
 .dot.active {
   background: white;
   transform: scale(1.2);
+}
+
+/* Tablet 768 */
+@media (max-width: 768px) {
+  .hero {
+    height: 320px;
+    max-width: 720px;
+    border-radius: 16px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    left: 40px;
+    max-width: 320px;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  .slider-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .left { left: 10px; }
+  .right { right: 10px; }
+
+  .dots {
+    bottom: 16px;
+  }
+}
+
+/* Mobile 375 */
+@media (max-width: 480px) {
+  .hero {
+    height: 240px;
+  }
+
+  .hero-content {
+    left: 20px;
+    max-width: 220px;
+  }
+
+  .hero-content h1 {
+    font-size: 18px;
+  }
+
+  .hero-content p {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .hero-btn {
+    padding: 8px 18px;
+    font-size: 12px;
+  }
 }
 </style>

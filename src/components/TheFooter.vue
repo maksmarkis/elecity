@@ -1,10 +1,8 @@
 <template>
   <footer class="footer">
-    <!-- Верхняя серая линия -->
     <div class="footer-line"></div>
 
     <div class="footer-inner">
-      <!-- Левая колонка -->
       <div class="footer-left">
         <img src="/logo.png" alt="ELECITY" class="footer-logo" />
         <a href="tel:+74951509555" class="footer-phone">+7(495)150-95-55</a>
@@ -15,58 +13,22 @@
           <a href="#"><img src="/odnoklassniki-logo.png" alt="Одноклассники" /></a>
         </div>
         <p class="footer-company">
-          ООО "БТ МАРКЕТ", ИНН7728483067<br>
+          ООО "БТ МАРКЕТ", ИНН7728483067<br />
           Москва, пр-д Соловьиный д. 2, ком. 1.
         </p>
       </div>
 
-      <!-- Колонка 2 -->
-      <div class="footer-col">
+      <div v-for="(col, colIndex) in footerColumns" :key="colIndex" class="footer-col">
         <ul>
-          <li><a href="#">Как оформить заказ</a></li>
-          <li><a href="#">Доставка</a></li>
-          <li><a href="#">Оплата</a></li>
-          <li><a href="#">Прием товара</a></li>
-          <li><a href="#">Почему покупать у нас</a></li>
-          <li><a href="#">Подключение техники</a></li>
-          <li><a href="#">Отзывы о нас</a></li>
-          <li><a href="#">Пользовательское соглашение</a></li>
-        </ul>
-      </div>
-
-      <!-- Колонка 3 -->
-      <div class="footer-col">
-        <ul>
-          <li><a href="#">Контакты</a></li>
-          <li><a href="#">О компании</a></li>
-          <li><a href="#">Юридическая информация</a></li>
-          <li><a href="#">Для поставщиков</a></li>
-          <li><a href="#">Для оптовых клиентов</a></li>
-          <li><a href="#">Оставить обращение</a></li>
-          <li><a href="#">Политика конфиденциальности</a></li>
-          <li><a href="#">Новости и обзоры</a></li>
-        </ul>
-      </div>
-
-      <!-- Колонка 4 -->
-      <div class="footer-col">
-        <ul>
-          <li><a href="#">Вопрос-ответ</a></li>
-          <li><a href="#">Дополнительный сервис</a></li>
-          <li><a href="#">Проверка на битые пиксели</a></li>
-          <li><a href="#">Утилизация техники</a></li>
-          <li><a href="#">Гарантийное обслуживание</a></li>
-          <li><a href="#">Сервисные центры</a></li>
-          <li><a href="#">Наши гарантии</a></li>
-          <li><a href="#">Обмен и возврат товара</a></li>
+          <li v-for="(link, linkIndex) in col" :key="linkIndex">
+            <a :href="link.url">{{ link.text }}</a>
+          </li>
         </ul>
       </div>
     </div>
 
-    <!-- Нижняя серая линия -->
     <div class="footer-line"></div>
 
-    <!-- Копирайт -->
     <div class="footer-bottom">
       <p>
         Обращаем Ваше внимание на то, что данный интернет-сайт носит исключительно информационный характер и ни при каких условиях информационные материалы и цены, размещенные на сайте, не являются публичной офертой, определяемой положениями Статьи 437 Гражданского кодекса РФ.
@@ -75,6 +37,18 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const footerColumns = ref([])
+
+onMounted(async () => {
+  const res = await fetch('/data/footer.json')
+  const data = await res.json()
+  footerColumns.value = data.columns
+})
+</script>
 
 <style scoped>
 .footer {
@@ -98,7 +72,6 @@
   gap: 40px;
 }
 
-/* Левая колонка */
 .footer-left {
   display: flex;
   flex-direction: column;
@@ -117,13 +90,13 @@
   font-weight: 700;
   color: #1a2634;
   text-decoration: none;
-  margin-left: 20px;    /* ← сдвиг номера */
+  margin-left: 20px;
 }
 
 .footer-social {
   display: flex;
   gap: 12px;
-  margin-left: 20px;    /* ← сдвиг соцсетей */
+  margin-left: 20px;
 }
 
 .footer-social img {
@@ -136,10 +109,9 @@
   font-size: 13px;
   color: #777;
   line-height: 1.5;
-  margin: 0 0 0 20px;   /* ← сдвиг ООО */
+  margin: 0 0 0 20px;
 }
 
-/* Колонки с ссылками */
 .footer-col {
   flex: 1;
 }
@@ -165,7 +137,6 @@
   color: #437FC8;
 }
 
-/* Нижняя часть */
 .footer-bottom {
   max-width: 1400px;
   margin: 0 auto;
@@ -183,5 +154,93 @@
 .footer-copyright {
   font-size: 13px;
   color: #666;
+}
+/* Tablet 768 */
+@media (max-width: 768px) {
+  .footer-inner {
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .footer-left {
+    margin-left: 0;
+  }
+
+  .footer-logo {
+    width: 180px;
+    height: auto;
+    margin-left: -15px;
+  }
+
+  .footer-phone {
+    margin-left: 0;
+    font-size: 16px;
+  }
+
+  .footer-social {
+    margin-left: 0;
+  }
+
+  .footer-company {
+    margin-left: 0;
+    font-size: 12px;
+  }
+
+  .footer-col {
+    flex: none;
+  }
+
+  .footer-col ul li a {
+    font-size: 13px;
+  }
+}
+
+/* Mobile 375 */
+@media (max-width: 480px) {
+  .footer-inner {
+    padding: 24px 12px;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    width: 180px;
+    height: auto;
+    margin-left: -10px;
+  }
+
+  .footer-phone {
+    font-size: 15px;
+  }
+
+  .footer-social img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .footer-company {
+    font-size: 11px;
+  }
+
+  .footer-col ul {
+    gap: 8px;
+  }
+
+  .footer-col ul li a {
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    padding: 16px 12px;
+  }
+
+  .footer-bottom p {
+    font-size: 11px;
+  }
+
+  .footer-copyright {
+    font-size: 12px;
+  }
 }
 </style>

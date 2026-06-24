@@ -1,0 +1,134 @@
+[
+  {
+    "badge": "new",
+    "gift": true,
+    "img": "/vodo-nagrev.png",
+    "discount": "-20%",
+    "price": "14 990 ₽",
+    "name": "Водонагреватель Electrolux EWH 80 Formax",
+    "stars": 4,
+    "reviews": 12,
+    "inStock": true
+  },
+  {
+    "badge": "new",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-20%",
+    "price": "32 490 ₽",
+    "name": "Стиральная машина LG F-1096TD3",
+    "stars": 3,
+    "reviews": 8,
+    "inStock": false
+  },
+  {
+    "badge": "gift",
+    "gift": false,
+    "img": "/microvave.png",
+    "discount": "-20%",
+    "price": "18 990 ₽",
+    "name": "Микроволновая печь WHIRLPOOL AMW 730 IX",
+    "stars": 5,
+    "reviews": 24,
+    "inStock": true
+  },
+  {
+    "badge": "new",
+    "gift": false,
+    "img": "/telek.png",
+    "discount": "-20%",
+    "price": "22 990 ₽",
+    "name": "Телевизор BLACKTON 2402B",
+    "stars": 2,
+    "reviews": 3,
+    "inStock": true
+  },
+  {
+    "badge": "new",
+    "gift": true,
+    "img": "/stiral.png",
+    "discount": "-15%",
+    "price": "45 990 ₽",
+    "name": "Холодильник Samsung RB30T3000SA",
+    "stars": 4,
+    "reviews": 18,
+    "inStock": true
+  },
+  {
+    "badge": "",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-25%",
+    "price": "8 990 ₽",
+    "name": "Пылесос Dyson V8 Absolute",
+    "stars": 3,
+    "reviews": 6,
+    "inStock": false
+  },
+  {
+    "badge": "new",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-20%",
+    "price": "27 990 ₽",
+    "name": "Электрическая плита Gorenje EC 6341 XC",
+    "stars": 5,
+    "reviews": 31,
+    "inStock": true
+  },
+  {
+    "badge": "gift",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-30%",
+    "price": "5 990 ₽",
+    "name": "Утюг Philips GC4909/80 Azur",
+    "stars": 2,
+    "reviews": 2,
+    "inStock": true
+  },
+  {
+    "badge": "new",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-20%",
+    "price": "12 990 ₽",
+    "name": "Название товара",
+    "stars": 3,
+    "reviews": 5,
+    "inStock": true
+  },
+  {
+    "badge": "",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-15%",
+    "price": "9 990 ₽",
+    "name": "Название товара",
+    "stars": 4,
+    "reviews": 10,
+    "inStock": true
+  },
+  {
+    "badge": "gift",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-25%",
+    "price": "15 990 ₽",
+    "name": "Название товара",
+    "stars": 5,
+    "reviews": 20,
+    "inStock": false
+  },
+  {
+    "badge": "new",
+    "gift": false,
+    "img": "/stiral.png",
+    "discount": "-30%",
+    "price": "7 990 ₽",
+    "name": "Название товара",
+    "stars": 2,
+    "reviews": 1,
+    "inStock": true
+  }
+]

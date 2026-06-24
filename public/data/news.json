@@ -1,0 +1,14 @@
+{
+  "big": { "img": "/pulesos.png" },
+  "center": [
+    { "img": "/snow-cleaner.png" },
+    { "img": "/cyberpunck.png" }
+  ],
+  "right": {
+    "wide": { "img": "/howFind-stiralka.png" },
+    "bottom": [
+      { "img": "/psfive.png" },
+      { "img": "/notebooks.png" }
+    ]
+  }
+}
