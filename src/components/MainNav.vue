@@ -158,40 +158,7 @@
 /* Mobile 375 */
 @media (max-width: 480px) {
   .main-nav {
-    padding: 8px 12px;
+    display: none !important;
   }
-
-  .nav-inner {
-    padding: 0;
-    gap: 0;
-    justify-content: space-between;
-  }
-
-  .desktop-only {
-    display: none;
-  }
-
-  .tablet-only {
-    display: flex;
-  }
-
-  .all-categories-btn.tablet-only {
-    padding: 6px 0;
-    font-size: 13px;
-    gap: 6px;
-    flex-shrink: 0;
-  }
-
-  .nav-links.tablet-only {
-    display: none;
-  }
-
-  .sale {
-    font-size: 13px;
-    flex-shrink: 0;
-  }
-}
-.topbar {
-  display: none;
 }
 </style>

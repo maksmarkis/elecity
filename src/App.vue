@@ -10,6 +10,7 @@
     <TechInfo />
     <TheFooter />   <!-- ← добавь -->
   </div>
+
 </template>
 
 <script setup>

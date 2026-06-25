@@ -24,7 +24,7 @@
             <span class="reviews-count">{{ item.reviews }} {{ pluralReviews(item.reviews) }}</span>
           </span>
         </div>
-        <button v-if="item.inStock" class="buy-btn">Купить</button>
+        <button v-if="item.inStock" class="buy-btn" @click="buyItem(item)">Купить</button>
         <button v-else class="buy-btn out-of-stock" disabled>Нет в наличии</button>
       </div>
     </div>
@@ -52,14 +52,18 @@
             <span class="reviews-count">{{ item.reviews }} {{ pluralReviews(item.reviews) }}</span>
           </span>
         </div>
-        <button v-if="item.inStock" class="buy-btn">Купить</button>
+        <button v-if="item.inStock" class="buy-btn" @click="buyItem(item)">Купить</button>
         <button v-else class="buy-btn out-of-stock" disabled>Нет в наличии</button>
       </div>
     </div>
 
     <!-- Баннер -->
     <div class="banner">
-      <img src="/airpods-banner.png" alt="AirPods" class="banner-img" />
+      <img :src="isMobile ? '/little-airpods.png' : '/good-airpods.png'" alt="AirPods" class="banner-img" />
+      <div class="banner-content">
+        <h2 class="banner-title">AirPods Pro</h2>
+        <p class="banner-subtitle">Успей приобрести всего за 2950 ₽</p>
+      </div>
     </div>
 
     <!-- Ряд 3 (последние 4 товара) -->
@@ -83,7 +87,7 @@
             <span class="reviews-count">{{ item.reviews }} {{ pluralReviews(item.reviews) }}</span>
           </span>
         </div>
-        <button v-if="item.inStock" class="buy-btn">Купить</button>
+        <button v-if="item.inStock" class="buy-btn" @click="buyItem(item)">Купить</button>
         <button v-else class="buy-btn out-of-stock" disabled>Нет в наличии</button>
       </div>
     </div>
@@ -92,12 +96,23 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useCart } from '../stores/cart'
 
+const { addToCart } = useCart()
 const products = ref([])
 
 onMounted(async () => {
   const res = await fetch('/data/popular.json')
   products.value = await res.json()
+})
+
+const windowWidth = ref(window.innerWidth)
+const isMobile = computed(() => windowWidth.value <= 480)
+
+onMounted(() => {
+  window.addEventListener('resize', () => {
+    windowWidth.value = window.innerWidth
+  })
 })
 
 const row1 = computed(() => products.value.slice(0, 4))
@@ -110,6 +125,14 @@ function pluralReviews(n) {
   if (mod10 === 1 && mod100 !== 11) return 'отзыв'
   if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'отзыва'
   return 'отзывов'
+}
+
+function buyItem(item) {
+  addToCart({
+    name: item.name,
+    price: item.price,
+    img: item.img
+  })
 }
 </script>
 
@@ -297,18 +320,42 @@ function pluralReviews(n) {
   margin: 35px 0;
 }
 
+/* Баннер */
 .banner {
   width: 100%;
   height: 355px;
   margin: 0 0 35px 0;
   border-radius: 20px;
   overflow: hidden;
+  position: relative;
 }
 
 .banner-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.banner-content {
+  position: absolute;
+  top: 50%;
+  left: 90px;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.banner-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  line-height: 1.1;
+}
+
+.banner-subtitle {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.3;
 }
 /* Tablet 768 */
 @media (max-width: 768px) {
@@ -377,6 +424,18 @@ function pluralReviews(n) {
     margin: 0 0 25px 0;
   }
 
+  .banner-content {
+    left: 40px;
+  }
+
+  .banner-title {
+    font-size: 30px;
+  }
+
+  .banner-subtitle {
+    font-size: 16px;
+  }
+
   .row-divider {
     margin: 25px 0;
   }
@@ -392,57 +451,35 @@ function pluralReviews(n) {
 
 /* Mobile 375 */
 @media (max-width: 480px) {
-  .popular {
-    margin: 40px auto 0;
-    padding: 0 10px;
-  }
-
-  .popular-title {
-    font-size: 20px;
-  }
-
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .product-img {
-    height: 150px;
-  }
-
-  .product-discount {
-    top: 120px;
-    font-size: 10px;
-  }
-
-  .product-price {
-    font-size: 16px;
-  }
-
-  .product-name {
-    font-size: 12px;
-  }
-
-  .product-rating {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .buy-btn {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    font-size: 13px;
-  }
-
   .banner {
-    height: 140px;
-    border-radius: 8px;
+    width: 345px;
+    height: 291px;
+    border-radius: 12px;
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
   }
 
-  .row-divider {
-    margin: 20px 0;
+
+  .banner-content {
+    top: 24px;
+    bottom: auto;
+    left: 20px;
+    transform: none;
+    text-align: left;
+  }
+
+  .banner-title {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .popular {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .banner-subtitle {
+    font-size: 14px;
   }
 }
 </style>

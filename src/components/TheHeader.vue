@@ -3,9 +3,9 @@
     <!-- ДЕСКТОП -->
     <div class="desktop-header">
       <div class="header-content">
-        <div class="left-part">
+        <div class="left-part" @click="toggleCityList">
           <img src="/geoposit-heder.png" alt="geo" class="geo-icon" />
-          <span class="city">Москва ▼</span>
+          <span class="city">{{ selectedCity }}</span>
         </div>
 
         <nav class="center-menu">
@@ -21,7 +21,7 @@
           <a href="#">Оставить обращение</a>
         </nav>
 
-        <div class="right-part">
+        <div class="right-part" @click="showAuth = true">
           <img src="./icons/login-heder.png" alt="login" class="login-icon" />
           <span class="personal">Личный кабинет</span>
         </div>
@@ -31,9 +31,9 @@
     <!-- ПЛАНШЕТ 768px -->
     <div class="tablet-header">
       <div class="tablet-content">
-        <div class="left-part">
+        <div class="left-part" @click="toggleCityList">
           <img src="/geoposit-heder.png" alt="geo" class="geo-icon" />
-          <span class="city">Москва ▼</span>
+          <span class="city">{{ selectedCity }}</span>
         </div>
 
         <nav class="tablet-menu">
@@ -70,10 +70,34 @@
         <div class="mobile-actions">
           <img src="/src/components/icons/search.png" alt="search" class="mobile-icon" />
           <img src="/shopping-logo.png" alt="cart" class="mobile-icon" />
-          <img src="./icons/login-heder.png" alt="login" class="mobile-icon personal-red" />
+          <img src="./icons/login-heder.png" alt="login" class="mobile-icon personal-red" @click="showAuth = true" />
           <button class="menu-btn" @click="openMenu">
             <img src="/menu-logo.png" alt="menu" class="menu-icon-red" />
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ВЫПАДАЮЩИЙ СПИСОК ГОРОДОВ -->
+    <div class="city-overlay" :class="{ active: isCityOpen }" @click.self="isCityOpen = false">
+      <div class="city-dropdown">
+        <div class="city-dropdown-top">
+          <span class="city-dropdown-title">Выберите город</span>
+          <button class="city-close-btn" @click="isCityOpen = false">✕</button>
+        </div>
+        <div class="city-search">
+          <input type="text" placeholder="Поиск города..." v-model="citySearch" />
+        </div>
+        <div class="city-list">
+          <div
+              v-for="city in filteredCities"
+              :key="city"
+              class="city-item"
+              :class="{ active: selectedCity === city }"
+              @click="selectCity(city)"
+          >
+            {{ city }}
+          </div>
         </div>
       </div>
     </div>
@@ -85,9 +109,9 @@
           <button class="close-btn" @click="closeMenu">✕</button>
         </div>
 
-        <div class="menu-item" @click="selectCity">
+        <div class="menu-item" @click="toggleCityList">
           <img src="/geoposit-heder.png" alt="" class="menu-icon" />
-          <span>Москва</span>
+          <span>{{ selectedCity }}</span>
           <span class="arrow">→</span>
         </div>
 
@@ -135,15 +159,47 @@
         <a href="#" class="menu-item">Авто</a>
       </div>
     </div>
+
+    <!-- ОКНО АВТОРИЗАЦИИ -->
+    <AuthModal :isOpen="showAuth" @close="showAuth = false" />
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import AuthModal from './AuthModal.vue'
 
 const showMore = ref(false)
 const isMenuOpen = ref(false)
 const isCategoriesOpen = ref(false)
+const isCityOpen = ref(false)
+const showAuth = ref(false)
+const selectedCity = ref('Москва')
+const citySearch = ref('')
+const cities = ref([])
+
+onMounted(async () => {
+  const res = await fetch('/data/cities.json')
+  const data = await res.json()
+  cities.value = data.cities
+})
+
+const filteredCities = computed(() => {
+  if (!citySearch.value) return cities.value
+  return cities.value.filter(c => c.toLowerCase().includes(citySearch.value.toLowerCase()))
+})
+
+const toggleCityList = () => {
+  isCityOpen.value = !isCityOpen.value
+  citySearch.value = ''
+  isMenuOpen.value = false
+}
+
+const selectCity = (city) => {
+  selectedCity.value = city
+  isCityOpen.value = false
+  citySearch.value = ''
+}
 
 const openMenu = () => isMenuOpen.value = true
 const closeMenu = () => {
@@ -156,8 +212,6 @@ const openCategories = () => {
   isCategoriesOpen.value = true
 }
 const closeCategories = () => isCategoriesOpen.value = false
-
-const selectCity = () => alert('Выбор города')
 </script>
 
 <style scoped>
@@ -182,7 +236,20 @@ const selectCity = () => alert('Выбор города')
   justify-content: space-between;
   font-size: 14px;
 }
-.left-part, .right-part { display: flex; align-items: center; gap: 8px; }
+.left-part {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.right-part {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
 .center-menu { display: flex; gap: 22px; flex: 1; justify-content: center; }
 .center-menu a { color: #1a2634; text-decoration: none; white-space: nowrap; }
 
@@ -197,6 +264,7 @@ const selectCity = () => alert('Выбор города')
   align-items: center;
   justify-content: space-between;
 }
+.tablet-content .left-part { cursor: pointer; }
 .tablet-menu { display: flex; align-items: center; gap: 20px; }
 .tablet-menu > a { color: #1a2634; text-decoration: none; font-size: 14px; }
 .more-wrapper { position: relative; cursor: pointer; }
@@ -254,9 +322,7 @@ const selectCity = () => alert('Выбор города')
   object-fit: contain;
   margin-left: 18px;
 }
-.mobile-icon:first-child {
-  margin-left: 0;
-}
+.mobile-icon:first-child { margin-left: 0; }
 .personal-red {
   filter: invert(18%) sepia(89%) saturate(7460%) hue-rotate(357deg) brightness(95%) contrast(92%);
 }
@@ -271,6 +337,78 @@ const selectCity = () => alert('Выбор города')
   width: 22px;
   height: 22px;
   filter: invert(18%) sepia(89%) saturate(7460%) hue-rotate(357deg) brightness(95%) contrast(92%);
+}
+
+/* Выпадающий список городов */
+.city-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1200;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+}
+.city-overlay.active { display: flex; }
+
+.city-dropdown {
+  width: 420px;
+  max-height: 500px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.city-dropdown-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+.city-dropdown-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a2634;
+}
+.city-close-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+}
+.city-search {
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
+}
+.city-search input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d0d7e0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+.city-list {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+.city-item {
+  padding: 12px 20px;
+  font-size: 15px;
+  color: #1a2634;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.city-item:hover { background: #f5f7fa; }
+.city-item.active {
+  background: #e3f2fd;
+  color: #2196F3;
+  font-weight: 600;
 }
 
 /* Мобильные меню */
@@ -328,9 +466,7 @@ const selectCity = () => alert('Выбор города')
   cursor: pointer;
   text-decoration: none;
 }
-.menu-item span {
-  text-align: left;
-}
+.menu-item span { text-align: left; }
 .menu-item .arrow {
   margin-left: auto;
   font-size: 20px;
@@ -386,5 +522,9 @@ const selectCity = () => alert('Выбор города')
 @media (max-width: 480px) {
   .tablet-header { display: none; }
   .mobile-header { display: block; }
+  .city-dropdown {
+    width: 90%;
+    max-height: 70vh;
+  }
 }
 </style>

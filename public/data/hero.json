@@ -2,24 +2,28 @@
   "slides": [
     {
       "img": "/mashonka.png",
+      "imgMobile": "/stiralki-threesevenfive.png",
       "title": "Большой выбор<br>стиральных машин",
       "subtitle": "Успей купить по суперцене",
       "btn": "Подробнее"
     },
     {
       "img": "/mashonka.png",
+      "imgMobile": "/stiralki-threesevenfive.png",
       "title": "Скидки до 50%<br>на технику",
       "subtitle": "Только до конца месяца",
       "btn": "Смотреть"
     },
     {
       "img": "/mashonka.png",
+      "imgMobile": "/stiralki-threesevenfive.png",
       "title": "Новинки<br>2024 года",
       "subtitle": "Будь в тренде",
       "btn": "Подробнее"
     },
     {
       "img": "/mashonka.png",
+      "imgMobile": "/stiralki-threesevenfive.png",
       "title": "Бесплатная<br>доставка",
       "subtitle": "При заказе от 5000 ₽",
       "btn": "Заказать"

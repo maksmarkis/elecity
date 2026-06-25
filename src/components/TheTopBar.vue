@@ -42,13 +42,18 @@
           <img src="/shopping-logo.png" alt="Корзина" class="cart-icon" />
           <div class="cart-info">
             <span class="cart-text">Корзина</span>
-            <span class="price">7 500 ₽</span>
+            <span class="price">{{ totalPrice.toLocaleString() }} ₽</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { useCart } from '../stores/cart'
+const { totalPrice } = useCart()
+</script>
 
 <style scoped>
 .topbar {
@@ -282,6 +287,12 @@
   .cart-icon {
     width: 28px;
     height: 28px;
+  }
+}
+/* Mobile 375 */
+@media (max-width: 480px) {
+  .topbar {
+    display: none !important;
   }
 }
 </style>

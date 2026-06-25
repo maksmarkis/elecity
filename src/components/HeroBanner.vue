@@ -2,7 +2,7 @@
   <div class="hero">
     <div class="hero-slider" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
       <div v-for="(slide, i) in slides" :key="i" class="slide">
-        <img :src="slide.img" alt="" class="slide-img" />
+        <img :src="isMobile ? slide.imgMobile : slide.img" alt="" class="slide-img" />
         <div class="hero-content">
           <h1 v-html="slide.title"></h1>
           <p>{{ slide.subtitle }}</p>
@@ -27,15 +27,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const slides = ref([])
 const currentSlide = ref(0)
+const windowWidth = ref(window.innerWidth)
+
+const isMobile = computed(() => windowWidth.value <= 480)
 
 onMounted(async () => {
   const res = await fetch('/data/hero.json')
   const data = await res.json()
   slides.value = data.slides
+  window.addEventListener('resize', () => {
+    windowWidth.value = window.innerWidth
+  })
 })
 
 const nextSlide = () => {
@@ -203,26 +209,72 @@ const goToSlide = (index) => {
 /* Mobile 375 */
 @media (max-width: 480px) {
   .hero {
-    height: 240px;
+    height: 460px;
+    max-width: 100%;
+    border-radius: 0;
+    margin: 0;
   }
 
   .hero-content {
+    position: absolute;
+    top: auto;
+    bottom: 70px;
     left: 20px;
-    max-width: 220px;
+    right: 20px;
+    transform: none;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .hero-content h1 {
-    font-size: 18px;
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   }
 
   .hero-content p {
-    font-size: 12px;
-    margin-bottom: 12px;
+    font-size: 16px;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   }
 
   .hero-btn {
-    padding: 8px 18px;
-    font-size: 12px;
+    padding: 12px 28px;
+    font-size: 14px;
+    align-self: flex-start;
+  }
+
+  .slider-arrow {
+    top: auto;
+    bottom: 70px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    transform: none;
+  }
+
+  .left {
+    left: auto;
+    right: 73px;
+  }
+
+  .right {
+    right: 20px;
+  }
+
+  .dots {
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 8px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
   }
 }
 </style>
