@@ -3,7 +3,7 @@
     <div class="topbar-inner">
       <!-- ЛОГО -->
       <div class="logo">
-        <img src="/logo.png" alt="ELECITY" />
+        <img src="/images/logo.png" alt="ELECITY" />
       </div>
 
       <!-- Верхние категории -->
@@ -24,8 +24,8 @@
       <!-- КОНТАКТЫ -->
       <div class="contacts">
         <div class="social">
-          <img src="/viber.png" alt="viber" />
-          <img src="/tg.png" alt="tg" />
+          <img src="/images/viber.png" alt="viber" />
+          <img src="/images/tg.png" alt="tg" />
         </div>
         <div class="phone-block">
           <a href="tel:+74951509555" class="phone">+7(495)150-95-55</a>
@@ -37,22 +37,23 @@
       <img src="./icons/login-heder.png" alt="login" class="personal-icon" />
 
       <!-- КОРЗИНА -->
-      <div class="cart">
+      <router-link to="/cart" class="cart">
         <div class="cart-wrapper">
-          <img src="/shopping-logo.png" alt="Корзина" class="cart-icon" />
+          <img src="/images/shopping-logo.png" alt="Корзина" class="cart-icon" />
           <div class="cart-info">
             <span class="cart-text">Корзина</span>
-            <span class="price">{{ totalPrice.toLocaleString() }} ₽</span>
+            <span class="price">{{ totalPrice > 0 ? totalPrice.toLocaleString() + ' ₽' : '0 ₽' }}</span>
           </div>
+          <span v-if="totalItems > 0" class="cart-count">{{ totalItems }}</span>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useCart } from '../stores/cart'
-const { totalPrice } = useCart()
+const { totalItems, totalPrice } = useCart()
 </script>
 
 <style scoped>
@@ -137,14 +138,12 @@ const { totalPrice } = useCart()
 .social {
   display: flex;
   align-items: center;
-
 }
 
 .social img {
   width: 26px;
   height: 26px;
   margin-left: 20px;
-
 }
 
 .phone-block {
@@ -158,19 +157,20 @@ const { totalPrice } = useCart()
   font-size: 16px;
   color: #1a2634;
   text-decoration: none;
-
 }
 
 .time {
   font-size: 12px;
   color: #666;
-
 }
 
 /* Корзина */
 .cart {
   cursor: pointer;
   margin-left: 30px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
 }
 
 .cart-wrapper {
@@ -200,6 +200,22 @@ const { totalPrice } = useCart()
   color: #e53935;
   font-weight: 700;
   font-size: 15px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  left: 18px;
+  background: #e53935;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
 }
 
 /* Иконка личного кабинета */
@@ -289,6 +305,7 @@ const { totalPrice } = useCart()
     height: 28px;
   }
 }
+
 /* Mobile 375 */
 @media (max-width: 480px) {
   .topbar {

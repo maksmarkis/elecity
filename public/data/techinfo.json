@@ -1,9 +1,9 @@
 {
   "advantages": [
-    { "img": "/try-time.png", "label": "8 лет опыт" },
-    { "img": "/try-obmen.png", "label": "Возврат и обмен" },
-    { "img": "/try-otvetrka.png", "label": "Установка" },
-    { "img": "/try-palec.png", "label": "Высокое качество" },
-    { "img": "/try-medal.png", "label": "Гарантия на все" }
+    { "img": "/images/try-time.png", "label": "8 лет опыт" },
+    { "img": "/images/try-obmen.png", "label": "Возврат и обмен" },
+    { "img": "/images/try-otvetrka.png", "label": "Установка" },
+    { "img": "/images/try-palec.png", "label": "Высокое качество" },
+    { "img": "/images/try-medal.png", "label": "Гарантия на все" }
   ]
 }

@@ -5,7 +5,7 @@
 
     <div class="news-grid">
       <!-- Большая вертикальная (десктоп) -->
-      <div class="news-card vertical-large desktop-only" style="background-image: url('/news-pulesos.png')">
+      <div class="news-card vertical-large desktop-only" style="background-image: url('/images/news-pulesos.png')">
         <div class="news-card-content">
           <h3 class="news-heading">Эффективная уборка без лишних проводов</h3>
           <p class="news-text">Обзор на Робот-пылесос Xiaomi Mi Robot Vacuum Cleaner</p>
@@ -13,7 +13,7 @@
       </div>
 
       <!-- Горизонтальная карточка пылесоса (адаптив) -->
-      <div class="news-card wide-card adaptive-only" style="background-image: url('/news-horizontalpulesos.png')">
+      <div class="news-card wide-card adaptive-only" style="background-image: url('/images/news-horizontalpulesos.png')">
         <div class="news-card-content-left">
           <h3 class="news-heading">Эффективная уборка без лишних проводов</h3>
           <p class="news-text">Обзор на Робот-пылесос Xiaomi Mi Robot Vacuum Cleaner</p>
@@ -22,12 +22,12 @@
 
       <!-- Центральная колонка -->
       <div class="news-center">
-        <div class="news-card small-card" style="background-image: url('/news-snowcleaner.png')">
+        <div class="news-card small-card" style="background-image: url('/images/news-snowcleaner.png')">
           <div class="news-card-content">
             <h3 class="news-heading">Как выбрать снегоуборщик</h3>
           </div>
         </div>
-        <div class="news-card small-card" style="background-image: url('/news-cyberpunk.png')">
+        <div class="news-card small-card" style="background-image: url('/images/news-cyberpunk.png')">
           <div class="news-card-content">
             <h3 class="news-heading">Самая дорогая видеоигра в мире Cyberpunk 2077 для TV Samsung 4K QLED</h3>
           </div>
@@ -36,18 +36,18 @@
 
       <!-- Правая колонка -->
       <div class="news-right">
-        <div class="news-card wide-card desktop-only" style="background-image: url('/news-choicestiralka.png')">
+        <div class="news-card wide-card desktop-only" style="background-image: url('/images/news-choicestiralka.png')">
           <div class="news-card-content">
             <h3 class="news-heading">Как выбрать стиральную машину</h3>
           </div>
         </div>
         <div class="news-right-bottom">
-          <div class="news-card small-card" style="background-image: url('/news-psFive.png')">
+          <div class="news-card small-card" style="background-image: url('/images/news-psFive.png')">
             <div class="news-card-content">
               <h3 class="news-heading">Playstation 5: захватывающее обновление, на которое мы надеялись</h3>
             </div>
           </div>
-          <div class="news-card small-card" style="background-image: url('/news-way.png')">
+          <div class="news-card small-card" style="background-image: url('/images/news-way.png')">
             <div class="news-card-content">
               <h3 class="news-heading">Путеводитель по покупкам: стоит ли покупать ноутбук или настольный компьютер?</h3>
             </div>
@@ -56,7 +56,7 @@
       </div>
 
       <!-- Горизонтальная карточка "Как выбрать стиральную машину" (адаптив) -->
-      <div class="news-card wide-card adaptive-only-bottom" style="background-image: url('/news-choicestiralka.png')">
+      <div class="news-card wide-card adaptive-only-bottom" style="background-image: url('/images/news-choicestiralka.png')">
         <div class="news-card-content">
           <h3 class="news-heading">Как выбрать стиральную машину</h3>
         </div>

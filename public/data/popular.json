@@ -2,7 +2,7 @@
   {
     "badge": "new",
     "gift": true,
-    "img": "/vodo-nagrev.png",
+    "img": "/images/vodo-nagrev.png",
     "discount": "-20%",
     "price": "14 990 ₽",
     "name": "Водонагреватель Electrolux EWH 80 Formax",
@@ -13,7 +13,7 @@
   {
     "badge": "new",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-20%",
     "price": "32 490 ₽",
     "name": "Стиральная машина LG F-1096TD3",
@@ -24,7 +24,7 @@
   {
     "badge": "gift",
     "gift": false,
-    "img": "/microvave.png",
+    "img": "/images/microvave.png",
     "discount": "-20%",
     "price": "18 990 ₽",
     "name": "Микроволновая печь WHIRLPOOL AMW 730 IX",
@@ -35,7 +35,7 @@
   {
     "badge": "new",
     "gift": false,
-    "img": "/telek.png",
+    "img": "/images/telek.png",
     "discount": "-20%",
     "price": "22 990 ₽",
     "name": "Телевизор BLACKTON 2402B",
@@ -46,7 +46,7 @@
   {
     "badge": "new",
     "gift": true,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-15%",
     "price": "45 990 ₽",
     "name": "Холодильник Samsung RB30T3000SA",
@@ -57,7 +57,7 @@
   {
     "badge": "",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-25%",
     "price": "8 990 ₽",
     "name": "Пылесос Dyson V8 Absolute",
@@ -68,7 +68,7 @@
   {
     "badge": "new",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-20%",
     "price": "27 990 ₽",
     "name": "Электрическая плита Gorenje EC 6341 XC",
@@ -79,7 +79,7 @@
   {
     "badge": "gift",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-30%",
     "price": "5 990 ₽",
     "name": "Утюг Philips GC4909/80 Azur",
@@ -90,7 +90,7 @@
   {
     "badge": "new",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-20%",
     "price": "12 990 ₽",
     "name": "Название товара",
@@ -101,7 +101,7 @@
   {
     "badge": "",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-15%",
     "price": "9 990 ₽",
     "name": "Название товара",
@@ -112,7 +112,7 @@
   {
     "badge": "gift",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-25%",
     "price": "15 990 ₽",
     "name": "Название товара",
@@ -123,7 +123,7 @@
   {
     "badge": "new",
     "gift": false,
-    "img": "/stiral.png",
+    "img": "/images/stiral.png",
     "discount": "-30%",
     "price": "7 990 ₽",
     "name": "Название товара",

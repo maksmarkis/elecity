@@ -4,21 +4,21 @@
     <div class="desktop-header">
       <div class="header-content">
         <div class="left-part" @click="toggleCityList">
-          <img src="/geoposit-heder.png" alt="geo" class="geo-icon" />
+          <img src="/images/geoposit-heder.png" alt="geo" class="geo-icon" />
           <span class="city">{{ selectedCity }}</span>
         </div>
 
         <nav class="center-menu">
-          <a href="#">Отзывы</a>
-          <a href="#">О нас</a>
-          <a href="#">Доставка</a>
-          <a href="#">Оплата</a>
-          <a href="#">Подключение техники</a>
-          <a href="#">Доп. сервис</a>
-          <a href="#">Наши гарантии</a>
-          <a href="#">Почему мы?</a>
-          <a href="#">Контакты</a>
-          <a href="#">Оставить обращение</a>
+          <router-link to="/reviews">Отзывы</router-link>
+          <router-link to="/about">О нас</router-link>
+          <router-link to="/delivery">Доставка</router-link>
+          <router-link to="/payment">Оплата</router-link>
+          <router-link to="/service-connection">Подключение техники</router-link>
+          <router-link to="/extra-service">Доп. сервис</router-link>
+          <router-link to="/warranty">Наши гарантии</router-link>
+          <router-link to="/why-us">Почему мы?</router-link>
+          <router-link to="/contacts">Контакты</router-link>
+          <router-link to="/feedback">Оставить обращение</router-link>
         </nav>
 
         <div class="right-part" @click="showAuth = true">
@@ -32,31 +32,31 @@
     <div class="tablet-header">
       <div class="tablet-content">
         <div class="left-part" @click="toggleCityList">
-          <img src="/geoposit-heder.png" alt="geo" class="geo-icon" />
+          <img src="/images/geoposit-heder.png" alt="geo" class="geo-icon" />
           <span class="city">{{ selectedCity }}</span>
         </div>
 
         <nav class="tablet-menu">
-          <a href="#">Отзывы</a>
-          <a href="#">О нас</a>
-          <a href="#">Доставка</a>
-          <a href="#">Оплата</a>
+          <router-link to="/reviews">Отзывы</router-link>
+          <router-link to="/about">О нас</router-link>
+          <router-link to="/delivery">Доставка</router-link>
+          <router-link to="/payment">Оплата</router-link>
           <div class="more-wrapper" @mouseenter="showMore = true" @mouseleave="showMore = false">
             <span class="more-btn">Еще</span>
             <div v-if="showMore" class="dropdown">
-              <a href="#">Подключение техники</a>
-              <a href="#">Доп. сервис</a>
-              <a href="#">Наши гарантии</a>
-              <a href="#">Почему мы?</a>
-              <a href="#">Контакты</a>
-              <a href="#">Оставить обращение</a>
+              <router-link to="/service-connection">Подключение техники</router-link>
+              <router-link to="/extra-service">Доп. сервис</router-link>
+              <router-link to="/warranty">Наши гарантии</router-link>
+              <router-link to="/why-us">Почему мы?</router-link>
+              <router-link to="/contacts">Контакты</router-link>
+              <router-link to="/feedback">Оставить обращение</router-link>
             </div>
           </div>
         </nav>
 
         <div class="tablet-right">
-          <img src="/viber.png" alt="viber" class="social-icon" />
-          <img src="/tg.png" alt="tg" class="social-icon tg-icon" />
+          <img src="/images/viber.png" alt="viber" class="social-icon" />
+          <img src="/images/tg.png" alt="tg" class="social-icon tg-icon" />
           <a href="tel:+74951509555" class="phone">+7(495)150-95-55</a>
         </div>
       </div>
@@ -65,14 +65,14 @@
     <!-- МОБИЛЬНЫЙ 375px -->
     <div class="mobile-header">
       <div class="mobile-content">
-        <img src="/logo.png" alt="ELECITY" class="mobile-logo" />
+        <img src="/images/logo.png" alt="ELECITY" class="mobile-logo" />
 
         <div class="mobile-actions">
           <img src="/src/components/icons/search.png" alt="search" class="mobile-icon" />
-          <img src="/shopping-logo.png" alt="cart" class="mobile-icon" />
+          <img src="/images/shopping-logo.png" alt="cart" class="mobile-icon" @click="goToCart" />
           <img src="./icons/login-heder.png" alt="login" class="mobile-icon personal-red" @click="showAuth = true" />
           <button class="menu-btn" @click="openMenu">
-            <img src="/menu-logo.png" alt="menu" class="menu-icon-red" />
+            <img src="/images/menu-logo.png" alt="menu" class="menu-icon-red" />
           </button>
         </div>
       </div>
@@ -110,7 +110,7 @@
         </div>
 
         <div class="menu-item" @click="toggleCityList">
-          <img src="/geoposit-heder.png" alt="" class="menu-icon" />
+          <img src="/images/geoposit-heder.png" alt="" class="menu-icon" />
           <span>{{ selectedCity }}</span>
           <span class="arrow">→</span>
         </div>
@@ -121,22 +121,23 @@
           <span class="arrow">→</span>
         </div>
 
-        <a href="#" class="menu-item">Отзывы</a>
-        <a href="#" class="menu-item">О нас</a>
-        <a href="#" class="menu-item">Доставка</a>
-        <a href="#" class="menu-item">Оплата</a>
-        <a href="#" class="menu-item">Подключение техники</a>
-        <a href="#" class="menu-item">Дополнительный сервис</a>
-        <a href="#" class="menu-item">Наши гарантии</a>
-        <a href="#" class="menu-item">Почему мы?</a>
-        <a href="#" class="menu-item">Контакты</a>
+        <router-link to="/reviews" class="menu-item">Отзывы</router-link>
+        <router-link to="/about">О нас</router-link>
+        <router-link to="/delivery">Доставка</router-link>
+        <router-link to="/payment">Оплата</router-link>
+        <router-link to="/service-connection">Подключение техники</router-link>
+        <router-link to="/extra-service">Доп. сервис</router-link>
+        <router-link to="/warranty">Наши гарантии</router-link>
+        <router-link to="/why-us">Почему мы?</router-link>
+        <router-link to="/contacts">Контакты</router-link>
+        <router-link to="/feedback">Оставить обращение</router-link>
 
         <div class="menu-contacts">
           <a href="tel:+74951509555" class="phone">+7(495)150-95-55</a>
           <span class="time">9:00 - 22:00 без выходных</span>
           <div class="social">
-            <img src="/viber.png" alt="viber" />
-            <img src="/tg.png" alt="tg" />
+            <img src="/images/viber.png" alt="viber" />
+            <img src="/images/tg.png" alt="tg" />
           </div>
         </div>
       </div>
@@ -212,6 +213,9 @@ const openCategories = () => {
   isCategoriesOpen.value = true
 }
 const closeCategories = () => isCategoriesOpen.value = false
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const goToCart = () => router.push('/cart')
 </script>
 
 <style scoped>

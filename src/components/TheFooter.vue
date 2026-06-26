@@ -4,13 +4,13 @@
 
     <div class="footer-inner">
       <div class="footer-left">
-        <img src="/logo.png" alt="ELECITY" class="footer-logo" />
+        <img src="/images/logo.png" alt="ELECITY" class="footer-logo" />
         <a href="tel:+74951509555" class="footer-phone">+7(495)150-95-55</a>
         <div class="footer-social">
-          <a href="#"><img src="/tg-blacklogo.png" alt="Telegram" /></a>
-          <a href="#"><img src="/vk-logo.png" alt="VK" /></a>
-          <a href="#"><img src="/viber-blacklogo.png" alt="Viber" /></a>
-          <a href="#"><img src="/odnoklassniki-logo.png" alt="Одноклассники" /></a>
+          <a href="#"><img src="/images/tg-blacklogo.png" alt="Telegram" /></a>
+          <a href="#"><img src="/images/vk-logo.png" alt="VK" /></a>
+          <a href="#"><img src="/images/viber-blacklogo.png" alt="Viber" /></a>
+          <a href="#"><img src="/images/odnoklassniki-logo.png" alt="Одноклассники" /></a>
         </div>
         <p class="footer-company">
           ООО "БТ МАРКЕТ", ИНН7728483067<br />

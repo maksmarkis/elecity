@@ -1,14 +1,14 @@
 {
-  "big": { "img": "/pulesos.png" },
+  "big": { "img": "/images/pulesos.png" },
   "center": [
-    { "img": "/snow-cleaner.png" },
-    { "img": "/cyberpunck.png" }
+    { "img": "/images/snow-cleaner.png" },
+    { "img": "/images/cyberpunck.png" }
   ],
   "right": {
     "wide": { "img": "/howFind-stiralka.png" },
     "bottom": [
-      { "img": "/psfive.png" },
-      { "img": "/notebooks.png" }
+      { "img": "/images/psfive.png" },
+      { "img": "/images/notebooks.png" }
     ]
   }
 }

@@ -59,7 +59,7 @@
 
     <!-- Баннер -->
     <div class="banner">
-      <img :src="isMobile ? '/little-airpods.png' : '/good-airpods.png'" alt="AirPods" class="banner-img" />
+      <img :src="isMobile ? '/images/little-airpods.png' : '/images/good-airpods.png'" alt="AirPods" class="banner-img" />
       <div class="banner-content">
         <h2 class="banner-title">AirPods Pro</h2>
         <p class="banner-subtitle">Успей приобрести всего за 2950 ₽</p>

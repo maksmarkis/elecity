@@ -1,6 +1,10 @@
 import { ref, computed } from 'vue'
 
-const cartItems = ref([])
+const cartItems = ref(JSON.parse(localStorage.getItem('cart') || '[]'))
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cartItems.value))
+}
 
 export function useCart() {
     const totalItems = computed(() => cartItems.value.reduce((sum, item) => sum + item.quantity, 0))
@@ -19,7 +23,18 @@ export function useCart() {
         } else {
             cartItems.value.push({ ...product, quantity: 1 })
         }
+        saveCart()
     }
 
-    return { cartItems, totalItems, totalPrice, addToCart }
+    function removeFromCart(productName) {
+        cartItems.value = cartItems.value.filter(i => i.name !== productName)
+        saveCart()
+    }
+
+    function clearCart() {
+        cartItems.value = []
+        saveCart()
+    }
+
+    return { cartItems, totalItems, totalPrice, addToCart, removeFromCart, clearCart }
 }
